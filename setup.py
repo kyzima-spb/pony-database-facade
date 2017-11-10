@@ -19,6 +19,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="pony-database-facade",
+    version="1.0.0",
     author="Kirill Vercetti",
     author_email="office@kyzima-spb.com",
     license="Apache-2.0",
@@ -27,7 +28,12 @@ setup(
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
-        'six',
-        'pony'
+        "six",
+        "pony"
+    ],
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python"
     ]
 )
