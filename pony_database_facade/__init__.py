@@ -14,7 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import inspect
 import os
 
 from pony.orm import Database
@@ -25,53 +24,42 @@ from .loader import Loader
 class DatabaseFacade(object):
     """PonyORM Database object Facade"""
 
-    def __init__(self, module_with_entities, **config):
-        self.__config = config
-
-        self.__set_module(module_with_entities)
-        self.__init_defaults()
+    def __init__(self, **config):
+        self.__db = Database()
+        self.set_config(config)
 
     def __init_defaults(self):
         """Initializes the default connection settings."""
 
-        self.__config.setdefault('type', 'sqlite')
+        config = self.__config
+        config.setdefault('provider', 'sqlite')
 
-        db_type = self.__config.get('type')
+        provider = config.get('provider')
 
-        if db_type == 'sqlite':
-            self.__config.setdefault('dbname', ':memory:')
-        elif db_type == 'mysql':
-            self.__config.setdefault('port', 3306)
-        elif db_type == 'postgres':
-            self.__config.setdefault('port', 5432)
-        elif db_type == 'oracle':
-            self.__config.setdefault('port', 1521)
+        if provider == 'sqlite':
+            config.setdefault('dbname', ':memory:')
+        elif provider == 'mysql':
+            config.setdefault('port', 3306)
+        elif provider == 'postgres':
+            config.setdefault('port', 5432)
+        elif provider == 'oracle':
+            config.setdefault('port', 1521)
+        else:
+            raise ValueError('Unsupported provider "{}"'.format(provider))
 
-        self.__config.setdefault('host', 'localhost')
-        self.__config.setdefault('user', None)
-        self.__config.setdefault('password', None)
-        self.__config.setdefault('dbname', None)
-        self.__config.setdefault('charset', 'utf8')
-
-    def __set_module(self, mod):
-        if not inspect.ismodule(mod):
-            mod = Loader().load_and_registry(mod)
-
-        db = getattr(mod, 'db')
-
-        if not isinstance(db, Database):
-            raise RuntimeError('The db module variable must be a Database object')
-
-        self.__module = mod
-        self.__db = db
+        config.setdefault('host', 'localhost')
+        config.setdefault('user', None)
+        config.setdefault('password', None)
+        config.setdefault('dbname', None)
+        config.setdefault('charset', 'utf8')
 
     def bind(self):
         config = self.__config
-        db_type = config.get('type')
-        args = [db_type]
+        provider = config.get('provider')
+        args = [provider]
         kwargs = {}
 
-        if db_type == 'sqlite':
+        if provider == 'sqlite':
             filename = config.get('dbname')
 
             if filename != ':memory:' and not os.path.dirname(filename):
@@ -81,7 +69,7 @@ class DatabaseFacade(object):
                 'filename': filename,
                 'create_db': True
             })
-        elif db_type == 'mysql':
+        elif provider == 'mysql':
             kwargs.update({
                 'host': config.get('host'),
                 'port': config.get('port'),
@@ -90,7 +78,7 @@ class DatabaseFacade(object):
                 'db': config.get('dbname'),
                 'charset': config.get('charset')
             })
-        elif db_type == 'postgres':
+        elif provider == 'postgres':
             kwargs.update({
                 'host': config.get('host'),
                 'port': config.get('port'),
@@ -98,7 +86,7 @@ class DatabaseFacade(object):
                 'password': config.get('password'),
                 'database': config.get('dbname')
             })
-        elif db_type == 'oracle':
+        elif provider == 'oracle':
             args.append('{user}/{password}@{host}:{port}/{dbname}'.format(user=config.get('user'),
                                                                           password=config.get('password'),
                                                                           host=config.get('host'),
@@ -106,12 +94,25 @@ class DatabaseFacade(object):
                                                                           dbname=config.get('dbname')
                                                                           ))
 
-        self.db.bind(*args, **kwargs)
+        self.original.bind(*args, **kwargs)
 
     def connect(self):
         self.bind()
-        self.db.generate_mapping(create_tables=True)
+        self.original.generate_mapping(create_tables=True)
 
     @property
-    def db(self):
+    def original(self):
         return self.__db
+
+    @property
+    def Entity(self):
+        return self.original.Entity
+
+    def set_config(self, config):
+        self.__config = config
+        self.__init_defaults()
+
+    @staticmethod
+    def load_module_with_entities(name):
+        assert isinstance(name, str)
+        return Loader().load_and_registry(name)
