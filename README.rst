@@ -1,26 +1,28 @@
 Pony Database Facade
 ====================
 
-|PyPI|
+|PyPI| `Русская документация`_
 
-The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
-
-`Русская документация`_.
+PonyORM Database object Facade. The package encapsulates the names of the parameters used in the low-level modules.
 
 
-## Installation
+Installation
+------------
 
-```bash
-pip install pony-database-facade
-```
+::
 
-## Usage
+  pip install pony-database-facade
 
-```python
-# model.py
 
-from pony.orm import Required
-from pony_database_facade import DatabaseFacade
+Usage
+-----
+
+.. code:: python
+
+  # model.py
+
+  from pony.orm import Required
+  from pony_database_facade import DatabaseFacade
 
 
 db = DatabaseFacade()
