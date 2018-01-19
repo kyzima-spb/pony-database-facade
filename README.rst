@@ -125,5 +125,5 @@ Full example
 .. |STARS| image:: https://img.shields.io/github/stars/kyzima-spb/pony-database-facade.svg
    :target: https://github.com/kyzima-spb/pony-database-facade/stargazers
 
-.. _Русская документация: docs/RU.md
+.. _Русская документация: docs/RU.rst
 .. _generate_mapping: https://docs.ponyorm.com/api_reference.html#Database.generate_mapping
