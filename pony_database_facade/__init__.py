@@ -114,7 +114,8 @@ class DatabaseFacade(object):
 
     def connect(self, create_tables=True, *args, **kwargs):
         # postgresql://scott:tiger@localhost/test
-        self.bind()
+        if self.original.provider is None:
+            self.bind()
         self.original.generate_mapping(*args, create_tables=create_tables, **kwargs)
 
     @property
