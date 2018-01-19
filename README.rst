@@ -1,9 +1,11 @@
 Pony Database Facade
 ====================
 
-|PyPI| `Русская документация`_
+|PyPI| |LICENCE|
 
 PonyORM Database object Facade. The package encapsulates the names of the parameters used in the low-level modules.
+
+`Русская документация`_
 
 
 Installation
@@ -16,6 +18,8 @@ Installation
 
 Parameter names
 ---------------
+
+The DatabaseFacade constructor and the ``bind`` method takes the following arguments:
 
 provider
   The name of the database provider.
@@ -49,6 +53,12 @@ create_db (SQLite only)
   Try to create the database if such filename doesn’t exists.
   By default is ``True``.
 
+*args
+  parameters required by the database driver.
+
+**kwargs
+  parameters required by the database driver.
+
 
 Usage
 -----
@@ -61,7 +71,7 @@ Usage
   from pony_database_facade import DatabaseFacade
 
 
-  db = DatabaseFacade()
+  db = DatabaseFacade() # SQLite in memory
 
 
   class Person(db.Entity):
@@ -87,5 +97,9 @@ Usage
 .. |PyPI| image:: https://img.shields.io/pypi/v/pony-database-facade.svg
     :target: https://pypi.python.org/pypi/pony-database-facade/
     :alt: Latest Version
+
+.. |LICENCE| image:: https://img.shields.io/github/license/kyzima-spb/pony-database-facade.svg
+   :target: https://github.com/kyzima-spb/pony-database-facade/blob/master/LICENSE
+   :alt: Apache 2.0
 
 .. _Русская документация: docs/RU.md
