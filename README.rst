@@ -16,8 +16,8 @@ Installation
   pip install pony-database-facade
 
 
-Parameter names
----------------
+Constructor
+-----------
 
 The ``DatabaseFacade`` constructor and the ``bind`` method takes the following arguments:
 
@@ -77,39 +77,43 @@ create_db (SQLite only)
             dbname='blog')
 
 
+Connection
+----------
 
-Usage
------
-
-.. code:: python
-
-  # model.py
-
-  from pony.orm import Required
-  from pony_database_facade import DatabaseFacade
-
-
-  db = DatabaseFacade() # SQLite in memory
-
-
-  class Person(db.Entity):
-      username = Required(str, 50)
-
+To connect to the database, use the ``connect`` method.
+This method takes the same arguments as `generate_mapping`_, but the default for ``create_tables`` is True.
+This method also calls the ``bind`` method.
 
 .. code:: python
 
-  # main.py
-
-  from pony.orm import db_session
-
-  import model
+    db = DatabaseFacade()
+    db.connect()
 
 
-  model.db.connect()
+Full example
+------------
+
+.. code:: python
+
+    # model.py
+
+    from pony.orm import Required, db_session, show
+    from pony_database_facade import DatabaseFacade
 
 
-  with db_session:
-      person_1 = model.Person(username='Linus')
+    db = DatabaseFacade()
+
+
+    class Person(db.Entity):
+        username = Required(str, 50)
+
+
+    db.connect()
+
+    with db_session:
+        person_1 = Person(username='Linus')
+
+    show(person_1)
 
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/pony-database-facade.svg
@@ -124,3 +128,4 @@ Usage
    :target: https://github.com/kyzima-spb/pony-database-facade/stargazers
 
 .. _Русская документация: docs/RU.md
+.. _generate_mapping: https://docs.ponyorm.com/api_reference.html#Database.generate_mapping
