@@ -5,12 +5,7 @@ Pony Database Facade
 
 The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
 
-
-Check out this `relative link`_.
-
-.. _relative link: docs/RU.md
-
-[Русская документация](docs/RU.md)
+`Русская документация`_.
 
 
 ## Installation
@@ -55,3 +50,5 @@ with db_session:
 .. |PyPI| image:: https://img.shields.io/pypi/v/pony-database-facade.svg
     :target: https://pypi.python.org/pypi/pony-database-facade/
     :alt: Latest Version
+
+.. _Русская документация: docs/RU.md
