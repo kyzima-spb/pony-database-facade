@@ -2,7 +2,7 @@
 
 The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
 
-|Build Status|  |PyPI|
+[![PyPI](https://img.shields.io/pypi/v/pony-database-facade.svg)]()
 
 [Русская документация](docs/RU.md)
 
