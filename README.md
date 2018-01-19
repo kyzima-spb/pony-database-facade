@@ -2,6 +2,8 @@
 
 The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
 
+[RU](docs/ru/README.md)
+
 ## Installation
 
 ```bash
