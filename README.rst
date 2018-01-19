@@ -1,7 +1,7 @@
 Pony Database Facade
 ====================
 
-|PyPI| |LICENCE|
+|PyPI| |LICENCE| |STARS|
 
 PonyORM Database object Facade. The package encapsulates the names of the parameters used in the low-level modules.
 
@@ -53,10 +53,10 @@ create_db (SQLite only)
   Try to create the database if such filename doesn’t exists.
   By default is ``True``.
 
-*args
+\*args
   parameters required by the database driver.
 
-**kwargs
+\*\*kwargs
   parameters required by the database driver.
 
 
@@ -95,11 +95,14 @@ Usage
 
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/pony-database-facade.svg
-    :target: https://pypi.python.org/pypi/pony-database-facade/
-    :alt: Latest Version
+   :target: https://pypi.python.org/pypi/pony-database-facade/
+   :alt: Latest Version
 
 .. |LICENCE| image:: https://img.shields.io/github/license/kyzima-spb/pony-database-facade.svg
    :target: https://github.com/kyzima-spb/pony-database-facade/blob/master/LICENSE
    :alt: Apache 2.0
+
+.. |STARS| image:: https://img.shields.io/github/stars/kyzima-spb/pony-database-facade.svg
+   :target: https://github.com/kyzima-spb/pony-database-facade/stargazers
 
 .. _Русская документация: docs/RU.md
