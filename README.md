@@ -2,7 +2,10 @@
 
 The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
 
-[RU](docs/ru/README.md)
+|Build Status|  |PyPI|
+
+[Русская документация](docs/RU.md)
+
 
 ## Installation
 
