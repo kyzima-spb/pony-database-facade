@@ -22,6 +22,34 @@ provider
   One of the list: ``sqlite``, ``mysql``, ``postgres`` or ``oracle``.
   By default is ``sqlite``.
 
+dbname
+  The name of the database.
+  If you are using SQLite, the name of the file in which SQLite will store the data and by default is ``:memory:``.
+
+host
+  Name of host to connect to.
+  By default is ``localhost``.
+
+port
+  TCP port of database server.
+  By default is standard port.
+
+user
+  User to authenticate as.
+  By default is ``None``.
+
+password
+  Password to authenticate with.
+  By default is ``None``.
+
+charset (MySQL only)
+  By default is ``utf8``.
+
+create_db (SQLite only)
+  Try to create the database if such filename doesn’t exists.
+  By default is ``True``.
+
+
 Usage
 -----
 
