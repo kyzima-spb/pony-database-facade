@@ -19,7 +19,7 @@ Installation
 Parameter names
 ---------------
 
-The DatabaseFacade constructor and the ``bind`` method takes the following arguments:
+The ``DatabaseFacade`` constructor and the ``bind`` method takes the following arguments:
 
 provider
   The name of the database provider.
@@ -58,6 +58,24 @@ create_db (SQLite only)
 
 \*\*kwargs
   parameters required by the database driver.
+
+.. code:: python
+
+    # SQLite in memory
+    db = DatabaseFacade()
+
+    # MySQL, localhost, no user, no password, used database blog
+    db = DatabaseFacade('mysql', dbname='blog')
+    db = DatabaseFacade(provider='mysql', dbname='blog')
+
+    # PostgreSQL
+    db = DatabaseFacade()
+    db.bind('postgres',
+            host='my.vps.com',
+            user='anyone',
+            password='anykey',
+            dbname='blog')
+
 
 
 Usage
