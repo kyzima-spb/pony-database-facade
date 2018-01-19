@@ -1,14 +1,14 @@
 # Pony Database Facade
 
-The pony-database-facade package encapsulates the names of the parameters used in the low-level modules.  
+Пакет pony-database-facade инкапсулирует имена параметров, используемых в низкоуровневых модулях.  
 
-## Installation
+## Установка
 
 ```bash
 pip install pony-database-facade
 ```
 
-## Usage
+## Использование
 
 ```python
 # model.py
