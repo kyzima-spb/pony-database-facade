@@ -14,6 +14,14 @@ Installation
   pip install pony-database-facade
 
 
+Parameter names
+---------------
+
+provider
+  The name of the database provider.
+  One of the list: ``sqlite``, ``mysql``, ``postgres`` or ``oracle``.
+  By default is ``sqlite``.
+
 Usage
 -----
 
