@@ -25,29 +25,27 @@ Usage
   from pony_database_facade import DatabaseFacade
 
 
-db = DatabaseFacade()
+  db = DatabaseFacade()
 
 
-class Person(db.Entity):
-    username = Required(str, 50)
-
-```
-
-```python
-# main.py
-
-from pony.orm import db_session
-
-import model
+  class Person(db.Entity):
+      username = Required(str, 50)
 
 
-model.db.connect()
+.. code:: python
+  # main.py
+
+  from pony.orm import db_session
+
+  import model
 
 
-with db_session:
-    person_1 = model.Person(username='Linus')
+  model.db.connect()
 
-```
+
+  with db_session:
+      person_1 = model.Person(username='Linus')
+
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/pony-database-facade.svg
     :target: https://pypi.python.org/pypi/pony-database-facade/
