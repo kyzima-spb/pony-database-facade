@@ -14,7 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 from setuptools import setup, find_packages
+
+
+with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
+    README = readme.read()
 
 
 setup(
@@ -25,6 +30,7 @@ setup(
     license="Apache-2.0",
     url="https://github.com/kyzima-spb/pony-database-facade",
     description="PonyORM Database object Facade",
+    long_description=README,
     packages=find_packages(),
     zip_safe=False,
     install_requires=[
