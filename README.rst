@@ -81,7 +81,7 @@ Connection
 ----------
 
 To connect to the database, use the ``connect`` method.
-This method takes the same arguments as `generate_mapping`_, but the default for ``create_tables`` is True.
+This method takes the same arguments as `generate_mapping`_, but the default for ``create_tables`` is ``True``.
 This method also calls the ``bind`` method.
 
 .. code:: python
@@ -94,8 +94,6 @@ Full example
 ------------
 
 .. code:: python
-
-    # model.py
 
     from pony.orm import Required, db_session, show
     from pony_database_facade import DatabaseFacade
