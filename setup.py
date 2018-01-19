@@ -24,7 +24,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
 
 setup(
     name="pony-database-facade",
-    version="2.0.0",
+    version="2.0.1",
     author="Kirill Vercetti",
     author_email="office@kyzima-spb.com",
     license="Apache-2.0",
